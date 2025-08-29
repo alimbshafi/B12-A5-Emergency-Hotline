@@ -50,3 +50,29 @@ for (let i = 0; i < callBtns.length; i++) {
         historyContainer.prepend(div);
     });
 }
+
+// ------------ Clear History Button --------------
+
+const clearBtn = document.getElementById("clearHistory");
+clearBtn.addEventListener("click", function () {
+    historyContainer.innerHTML = "";
+});
+
+
+// --------------- Number Copy Feature --------------
+const copyBtns = document.querySelectorAll(".copyBtn");
+const copyNumbers = document.querySelectorAll(".service-number");
+const totalCopyCount = document.getElementById("copyCount");
+
+let copyCount = 0;
+
+for (let i = 0; i < copyBtns.length; i++) {
+    const copyBtn = copyBtns[i];
+    const number = copyNumbers[i];
+    copyBtn.addEventListener("click", function () {
+        copyCount = copyCount + 1;
+        totalCopyCount.textContent = copyCount;
+        const textToCopy = number.textContent;
+        navigator.clipboard.writeText(textToCopy);
+    });
+}
